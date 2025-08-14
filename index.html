@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuantumCalc Pro | Advanced Modern Calculator</title>
+    <meta name="description" content="A sleek, modern calculator with advanced features and responsive design">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="assets/calculator-icon.svg" type="image/svg+xml">
+</head>
+<body>
+    <div class="calculator">
+        <div class="title-bar">
+            <div class="calculator-name">
+                <i class="fas fa-calculator"></i>
+                <span>QuantumCalc Pro</span>
+            </div>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+        
+        <div class="display">
+            <div class="memory-indicator" id="memoryIndicator" aria-hidden="true">M</div>
+            <div class="history" id="history" aria-live="polite"></div>
+            <div class="input" id="input" aria-live="polite">0</div>
+        </div>
+        
+        <div class="keypad">
+            <button class="key function" data-action="mc" aria-label="Memory clear">MC</button>
+            <button class="key function" data-action="mr" aria-label="Memory recall">MR</button>
+            <button class="key function" data-action="m+" aria-label="Memory add">M+</button>
+            <button class="key function" data-action="m-" aria-label="Memory subtract">M-</button>
+            
+            <button class="key clear" data-action="clear" aria-label="All clear">AC</button>
+            <button class="key function" data-action="backspace" aria-label="Backspace"><i class="fas fa-backspace"></i></button>
+            <button class="key function" data-action="percentage" aria-label="Percentage">%</button>
+            <button class="key function" data-action="square" aria-label="Square">x²</button>
+            <button class="key operator" data-action="/" aria-label="Divide">÷</button>
+            <button class="key" data-number="7">7</button>
+            <button class="key" data-number="8">8</button>
+            <button class="key" data-number="9">9</button>
+            <button class="key operator" data-action="*" aria-label="Multiply">×</button>
+            <button class="key" data-number="4">4</button>
+            <button class="key" data-number="5">5</button>
+            <button class="key" data-number="6">6</button>
+            <button class="key operator" data-action="-" aria-label="Subtract">−</button>
+            <button class="key" data-number="1">1</button>
+            <button class="key" data-number="2">2</button>
+            <button class="key" data-number="3">3</button>
+            <button class="key operator" data-action="+" aria-label="Add">+</button>
+          
+            <button class="key function" data-action="sign" aria-label="Change sign">±</button>
+            <button class="key" data-number="0">0</button>
+            <button class="key" data-action="." aria-label="Decimal point">.</button>
+            <button class="key function" data-action="sqrt" aria-label="Square root">√</button>
+            <button class="key function" data-action="power" aria-label="Power">x^</button>
+            <button class="key function" data-action="inverse" aria-label="Inverse">1/x</button>
+            <button class="key equals" data-action="=" aria-label="Equals">=</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

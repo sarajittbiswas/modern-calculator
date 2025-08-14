@@ -1,0 +1,316 @@
+/* Modern Calculator Stylesheet */
+/* Author: Sarajit Biswas */
+/* Version: 1.1.0 */
+/* Date: 14th Aug, 2025 */
+
+:root {
+    --primary-bg: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+    --primary-light-bg: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    --calculator-bg: rgba(255, 255, 255, 0.1);
+    --calculator-light-bg: rgba(255, 255, 255, 0.7);
+    --calculator-border: rgba(255, 255, 255, 0.2);
+    --calculator-light-border: rgba(0, 0, 0, 0.05);
+    --title-color: #64ffda;
+    --title-light-color: #0f3460;
+    --key-bg: rgba(255, 255, 255, 0.1);
+    --key-light-bg: rgba(255, 255, 255, 0.7);
+    --operator-bg: rgba(255, 107, 107, 0.2);
+    --operator-light-bg: rgba(255, 107, 107, 0.3);
+    --function-bg: rgba(100, 255, 218, 0.2);
+    --function-light-bg: rgba(100, 255, 218, 0.3);
+    --clear-bg: rgba(255, 71, 87, 0.2);
+    --clear-light-bg: rgba(255, 71, 87, 0.3);
+    --equals-bg: linear-gradient(135deg, #ff6b6b, #ffa502);
+    --text-dark: #fff;
+    --text-light: #333;
+    --history-dark: rgba(255, 255, 255, 0.7);
+    --history-light: rgba(0, 0, 0, 0.6);
+    --shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    --light-shadow: 0 15px 30px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.05);
+    --key-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    --key-light-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: var(--primary-bg);
+    padding: 20px;
+    transition: background 0.5s ease;
+}
+
+body.light-theme {
+    background: var(--primary-light-bg);
+}
+
+.calculator {
+    width: 100%;
+    max-width: 400px;
+    background: var(--calculator-bg);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--calculator-border);
+    transition: all 0.3s ease;
+}
+
+body.light-theme .calculator {
+    background: var(--calculator-light-bg);
+    box-shadow: var(--light-shadow);
+    border: 1px solid var(--calculator-light-border);
+}
+
+.title-bar {
+    padding: 15px 20px;
+    background: rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.light-theme .title-bar {
+    background: rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.calculator-name {
+    color: var(--title-color);
+    font-weight: 600;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+body.light-theme .calculator-name {
+    color: var(--title-light-color);
+}
+
+.theme-toggle {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-dark);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+body.light-theme .theme-toggle {
+    background: rgba(0, 0, 0, 0.05);
+    color: var(--text-light);
+}
+
+.theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(30deg);
+}
+
+body.light-theme .theme-toggle:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.display {
+    padding: 30px 20px 10px;
+    background: rgba(0, 0, 0, 0.2);
+    text-align: right;
+    position: relative;
+}
+
+body.light-theme .display {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.history {
+    min-height: 25px;
+    font-size: 16px;
+    color: var(--history-dark);
+    margin-bottom: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color 0.3s;
+}
+
+body.light-theme .history {
+    color: var(--history-light);
+}
+
+.input {
+    min-height: 60px;
+    font-size: 40px;
+    font-weight: 600;
+    color: var(--text-dark);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color 0.3s;
+}
+
+body.light-theme .input {
+    color: var(--text-light);
+}
+
+.memory-indicator {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    color: var(--title-color);
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+body.light-theme .memory-indicator {
+    color: var(--title-light-color);
+}
+
+.memory-indicator.active {
+    opacity: 1;
+}
+
+.keypad {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+body.light-theme .keypad {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+.key {
+    aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--key-bg);
+    border-radius: 12px;
+    color: var(--text-dark);
+    font-size: 24px;
+    font-weight: 500;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: var(--key-shadow);
+    border: none;
+}
+
+body.light-theme .key {
+    background: var(--key-light-bg);
+    color: var(--text-light);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: var(--key-light-shadow);
+}
+
+.key:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+body.light-theme .key:hover {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.key:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.key:focus-visible {
+    outline: 2px solid #64ffda;
+    outline-offset: 2px;
+}
+
+.operator {
+    background: var(--operator-bg);
+    color: #ff6b6b;
+}
+
+body.light-theme .operator {
+    background: var(--operator-light-bg);
+}
+
+.operator:hover {
+    background: rgba(255, 107, 107, 0.3);
+}
+
+body.light-theme .operator:hover {
+    background: rgba(255, 107, 107, 0.4);
+}
+
+.equals {
+    background: var(--equals-bg);
+    color: white;
+    grid-column: span 1;
+    aspect-ratio: unset;
+}
+
+.equals:hover {
+    background: linear-gradient(135deg, #ff5252, #ff9f1a);
+}
+
+.function {
+    background: var(--function-bg);
+    color: #64ffda;
+}
+
+body.light-theme .function {
+    background: var(--function-light-bg);
+    color: #0a8c6c;
+}
+
+.function:hover {
+    background: rgba(100, 255, 218, 0.3);
+}
+
+body.light-theme .function:hover {
+    background: rgba(100, 255, 218, 0.4);
+}
+
+.clear {
+    background: var(--clear-bg);
+    color: #ff4757;
+}
+
+body.light-theme .clear {
+    background: var(--clear-light-bg);
+}
+
+.clear:hover {
+    background: rgba(255, 71, 87, 0.3);
+}
+
+body.light-theme .clear:hover {
+    background: rgba(255, 71, 87, 0.4);
+}
+
+@media (max-width: 480px) {
+    .calculator {
+        max-width: 100%;
+    }
+    
+    .key {
+        font-size: 20px;
+    }
+    
+    .input {
+        font-size: 36px;
+    }
+}
